@@ -9,6 +9,7 @@ class AddProductForm extends Component
 {
     constructor(props){
         super(props);
+       
         this.onChangeSku = this.onChangeSku.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangePrice = this.onChangePrice.bind(this);
@@ -16,6 +17,7 @@ class AddProductForm extends Component
         this.validation = this.validation.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.state = {
+            clickBtnValue: '',
             sku: '',
             name: '',
             price: '',
@@ -346,7 +348,9 @@ class AddProductForm extends Component
 
     onSubmit(e){
         e.preventDefault();
+        let clickBtnValue = document.getElementById('save').value.toLowerCase();
         const obj = {
+            clickBtnValue: clickBtnValue,
             sku: this.state.sku,
             name: this.state.name,
             price: this.state.price,
@@ -357,9 +361,9 @@ class AddProductForm extends Component
             width: this.state.width,
             length: this.state.length
         }; 
-        fetch("https://scandiweb123.000webhostapp.com/addProduct.php", {  
+        fetch("https://scandiwebreactphpmysqlserver.herokuapp.com/", {  
             method: "POST",
-            body: JSON.stringify(obj)
+            body: JSON.stringify(obj)     
             })
             .then(function(response) {
                 return response.text()})
@@ -388,7 +392,7 @@ class AddProductForm extends Component
                             <div className="navbar-brand d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">Product Add</div>
                                 <div className="nav nav-pills">
                                     <div className="me-2">
-                                        <input type="submit" form="product_form" value="SAVE" className="btn btn-success" id="submit"/>
+                                        <input type="submit"form="product_form" className="btn btn-success" name="save" value="SAVE" id="save" />
                                     </div>
                                     <div className="me-2">
                                         <Link to={'/'} className="btn btn-success">CANCEL</Link>
@@ -415,7 +419,7 @@ class AddProductForm extends Component
                                     <div className="row mb-3">
                                         <label htmlFor="price" className="col-sm-2 col-form-label">Price ($)</label>
                                         <div className="col-sm-4">
-                                            <input onChange={this.onChangePrice} type="text" className="form-control" id="price" required/>
+                                            <input onChange={this.onChangePrice} type="text" name="price" className="form-control" id="price" required/>
                                         </div>
                                     </div>
                                     <div className="row mb-3">

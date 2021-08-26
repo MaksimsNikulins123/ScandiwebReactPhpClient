@@ -39,10 +39,7 @@ class Products extends Component
                         <div>{this.prodyctType()}</div>
                     </div>
                 </div>
-            </div>
-                
-  
-            
+            </div>   
         );
     }     
 }
