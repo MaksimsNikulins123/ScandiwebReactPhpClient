@@ -44,9 +44,9 @@ class ProductList extends Component
     fetch("https://scandiwebreactphpmysqlserver.herokuapp.com/", {  
       method: "POST",
       body: JSON.stringify({
-        btn: clickBtnValue,
-        deleteId: array
-        }),
+              clickBtnValue: clickBtnValue,
+              deleteId: array
+            }),
      
       }).then(function(response) {
         return response.text();
