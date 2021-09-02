@@ -35,13 +35,13 @@ class ProductList extends Component
   }
   
   delete(){ 
-    let clickBtnValue = document.getElementById('delete').value.toLowerCase();
+    let clickBtnValue = document.getElementById('delete').name;
     const array = []
     let checkboxes = document.querySelectorAll('.delete-checkbox:checked')
     for (var i = 0; i < checkboxes.length; i++) {
     array.push(checkboxes[i].value)
     }
-    fetch("https://scandiwebreactphpmysqlserver.herokuapp.com/", {  
+    fetch("https://scandiwebreactphpmysqlserver.herokuapp.com/", {   
       method: "POST",
       body: JSON.stringify({
               clickBtnValue: clickBtnValue,
@@ -69,7 +69,7 @@ class ProductList extends Component
                             <Link to={'/addproduct'} className="btn btn-success">ADD</Link>
                         </div>
                         <div className="header_button me-2">
-                        <input type="button" value="MASS DELETE" className="btn btn-success" name="mass delete" onClick={this.delete} id="delete"/>
+                        <input type="button" value="MASS DELETE" className="btn btn-success" name="delete" onClick={this.delete} id="delete"/>
                      
                         </div>
                     </div>

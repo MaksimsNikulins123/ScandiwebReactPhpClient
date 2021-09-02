@@ -17,16 +17,16 @@ class AddProductForm extends Component
         this.validation = this.validation.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.state = {
-            clickBtnValue: '',
+            // clickBtnValue: '',
             sku: '',
             name: '',
             price: '',
             typeSwitcher: '',
-            size: '',
-            weight: '',
-            height: '',
-            width: '',
-            length: ''
+            size: '0',
+            weight: '0',
+            height: '0',
+            width: '0',
+            length: '0'
         }  
       
     }
@@ -348,7 +348,7 @@ class AddProductForm extends Component
 
     onSubmit(e){
         e.preventDefault();
-        let clickBtnValue = document.getElementById('save').value.toLowerCase();
+        let clickBtnValue = document.getElementById('save').name;
         const obj = {
             clickBtnValue: clickBtnValue,
             sku: this.state.sku,
@@ -361,7 +361,7 @@ class AddProductForm extends Component
             width: this.state.width,
             length: this.state.length
         }; 
-        fetch("https://scandiwebreactphpmysqlserver.herokuapp.com/", {  
+        fetch("https://scandiwebreactphpmysqlserver.herokuapp.com/", {    
             method: "POST",
             body: JSON.stringify(obj)     
             })
